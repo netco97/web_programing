@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Naver</title> <!-- chapter 2-1 title-->
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+  #head {
+    background-color: white;
+    position: sticky;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+  header
+  {
+      display: flex;
+  }
+  header > h3
+  {
+      font-size: 24px;
+      font-weight: bold;
+      font-family: "맑은 고딕";
+      text-align: right;
+      flex:0.5;
+      margin-top : 45px;
+  }
+  #under_line{
+    text-decoration: none;
+    color:black;
+  }
+  #search_icon{
+    width: 20px;
+    height:20px;
+    margin-left: -30px;
+    position:absolute;
+  }
+  #set
+  {
+      font-weight: bold;
+      font-family: "맑은 고딕";
+      list-style: none; /* chapter  5 - 2 리스트 꾸미기  + 표 꾸미기도 있음 밑에*/
+      padding-left : 20%;
+      text-align: center;
+      margin-top : 0;
+  }
+  nav>ul>li
+  {
+      display: inline-block;
+      margin-right: 20px;
+  }
+  #search
+  {
+      float:right;
+  }
+
+  .navigation .prev {
+  position: absolute;
+  z-index: 10;
+  font-size: 25px;
+  top: 60%;
+  left: 10px;
+  font-weight: 700;
+  }
+  .navigation .next {
+  right: 10px;
+  position: absolute;
+  font-size: 25px;
+  z-index: 10;
+  top: 60%;
+  }
+  .navigation .nav-btn {
+    background: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+  }
+  .navigation .nav-btn:hover {
+    background: white;
+  }
+  .slide{
+    margin-top: 20px;
+  }
+  .slide img {
+    width: 100%;
+    border:8px solid white;
+  }
+
+  .item {
+    display: none;
+  }
+
+  .main {
+    display: block;
+  }
+  caption{
+    font-weight: bold;
+    font-family: "맑은 고딕";
+    font-size: 24px;
+    text-align: left;
+    margin-left : 5px;
+  }
+  #image_table{
+    width:70%; 
+    margin-left:15%; 
+    margin-right:15%;
+  }
+  #table_img{
+    width: 500px;
+    height: 300px;
+  }
+  #introduce h1{
+      text-align: center;
+      font-size: 2.0em;
+  }
+  #introduce h3{
+    text-align: center;
+  }
+  #introduce img{
+    width: 100%;
+  }
+  #introduce p{
+    text-align: center;
+    font-size: 18px;
+  }
+  #introduce2 {
+    border-top: 2px solid #444444;
+    width:70%; 
+    margin-left:15%; 
+    margin-right:15%;
+    border-collapse: collapse;
+  }
+  #introduce2 td{
+    border-bottom: 0.1px solid #444444;
+    padding : 20px;
+  }
+  #present h1{
+    text-align: center;
+  }
+  #present h3{
+    text-align: center;
+  }
+  #present img{
+    width: 100%;
+  }
+  #window_link{ 
+    text-decoration: none;
+    color:black;
+    margin-left:90%;
+  }
+  #contents{
+    width:80%; 
+    margin-left:15%; 
+    margin-right:15%;
+  }
+</style>
+<script> /*chapter 10*/
+  let newWin = null;
+  function load(URL){
+    newWin = window.open(URL, "myWin", "");
+  }
+  function closeNewWindow(){
+    if(newWin==null || newWin.closed)
+      return;
+    else
+      newWin.close();
+  }
+</script>
+</head>
+<body>
+<div id="head">
+  <header> <!--chapter 3-1 시맨틱 태그 !-->
+      <canvas id="myCanvas" width="210" height="110"></canvas> <!--chapter 11 canvas 사용-->
+      <script>
+        let canvas = document.getElementById("myCanvas"); /*chapter 8 getElementById*/
+        let context = canvas.getContext("2d");
+
+        let img = new Image();
+        img.onload = function(){
+          context.drawImage(img,10,10,200,100);
+        }
+        img.src = "naver.png";
+      </script>
+      <h3>네이버 홈페이지</h3>
+  </header>
+  <nav>
+      <ul id="set">
+          <li><a id="under_line" href="#move1">네이버 소개</a></li> <!-- chapter 2-3 하이퍼 링크 밑에 그림 4개도 하이퍼링크 +1개더만들어야함-->
+          <li><a id="under_line" href="#move2">가치 실현</a></li>
+          <li><a id="under_line" href="#move3">네이버 제품 소개</a></li> 
+          <li>수상 내역</li>
+          <li><a id="under_line" href = "https://recruit.navercorp.com/" target="_blank">채용</a></li>
+          <li id="search"><img id="search_icon"src="search_icon.png"/>
+          <input type="search" name="q"></li> <!-- chapter 3-2 웹폼 input type=search-->
+      </ul>
+  </nav>
+</div>
+<section>
+    <div class="navigation">
+        <div class="prev nav-btn"></div>
+        <div class="next nav-btn"></div>
+        <div class="slide">
+        <div class="item main">
+            <img src="naver_1.jpeg" alt="naver_1" /> <!--chapter 2-2 이미지 삽입-->
+            <div class="caption"></div></div>
+        <div class="item">
+            <img src="naver_2.jpeg" alt="naver_2" />
+            <div class="caption"></div></div>
+        <div class="item">
+            <img src="naver_3.jpeg" alt="naver_3" />
+            <div class="caption"></div></div>
+        <div class="item">
+            <img src="naver_4.jpeg" alt="naver_4" />
+            <div class="caption"></div></div>
+        <div class="item">
+            <img src="naver_5.jpeg" alt="naver_5" />
+            <div class="caption"></div></div>
+        <div class="item">
+            <img src="naver_6.jpeg" alt="naver_6" />
+            <div class="caption"></div></div>
+        <div class="item">
+            <img src="naver_7.jpeg" alt="naver_7" />
+            <div class="caption"></div></div>   
+        </div>
+    </div><br><br><br>
+    <div id="introduce">
+    <h1><a id="move1"></a>네이버 소개</h1>
+    <h3>네이버는 수많은 SME와 창작자, 파트너들이 미래 기술을 활용해<br>
+      글로벌 시장에서 더 큰 성장을 이룰 수 있도록 지원하는 글로벌 테크 플랫폼입니다.</h3><br>
+      <img src="naver_introduce.jpeg" alt="naver_introduce"/><br>
+      <br>
+      <p>
+        네이버(주)는 글로벌 ICT 기업으로서 한국 최대 검색포털 네이버를 서비스하고 있고, 그 계열사에서 모바일 메신저 라인, 동영상 카메라 스노우,<br>
+        디지털 만화 서비스 네이버웹툰, 메타버스 서비스 제페토 등을 서비스하고 있습니다. 또한, 네이버(주)는 인공지능, 로보틱스, 모빌리티 등 미래 기<br>
+        술에 대한 지속적인 연구개발을 통해 기술 플랫폼의 변화와 혁신을 추구하며 세계 각국의 수많은 이용자와 다양한 파트너들이 함께 성장할 수 있도록<br>
+        노력하고 있습니다.<br></p>
+        <table id="introduce2">
+          <tr><td>설립연도</td><td>1999년 6월</td></tr>
+          <tr><td>본사 위치</td><td>경기도 성남시 분당구</td></tr>
+          <tr><td>주요서비스</td><td>온라인 검색포털, 모바일 메신저 플랫폼</td></tr>
+          <tr><td>주요사업</td><td>온라인 광고 및 콘텐츠 사업</td></tr>
+          <tr><td>해외 계열 법인</td><td>일본, 미국, 프랑스, 중국, 베트남, 대만, 태국, 인도네시아 외</td></tr>
+          <tr><td>매출액</td><td>6조 818억 원 (2021년)</td></tr>
+          <tr><td>전체인력</td><td>4,595명 (본사 기준, 2021년 기준)</td></tr>
+        </table>
+    </div>
+    <br><br><br><br>
+    <div id ="present">
+      <h1><a id="move2"></a> 프로젝트 꽃 </h1>
+      <h3> 프로젝트 꽃은 SME와 크리에이터의 가치를 발견하고 <br>지속 가능한 성공을 응원하는 네이버의 핵심캠페인입니다.</h3><br><br>
+      <img src = "naver_present.jpeg"/>
+      <br><br><br><br>
+      <table id="contents">
+        <tr>
+          <td>콘텐츠를 생산하는 SME와 크리에이터의 성장은 많은 이용자가 더 다양한 콘텐츠를 만<br>
+          날 수 있는 기반이 되었습니다. 또한 다양한 콘텐츠들이 더 많은 이용자와 만날수록 새로<br>
+           운 비즈니스 기회가 만들어졌습니다. 네이버의 개발자, 기획자, 디자인 설계자들은 이러<br>
+           한 건강한 선순환이 잘 이루어질 수 있도록 콘텐츠 생산자 한 사람 한 사람의 도전과 성<br>
+           공을 응원하는 ‘프로젝트 꽃’을 시작하였습니다. 프로젝트 꽃은 숨은 보석 같은 가게, 취<br>
+           향 저격 콘텐츠 등 작은 개인이 한계를 넘어 다양성의 가치를 인정받고, 개개인의 성공들<br>
+           이 모여 우리 경제에 분수 효과를 가져오기를 기대합니다.</td>
+          <td>네이버의 기술과 플랫폼은 프로젝트 꽃을 실현하는 토양입니다. AI 인공지능, 음성인식 ·<br>
+             합성 등 어렵게만 여겨지는 첨단 기술을 일상생활 속에서 쉽게 활용하고, 이를 통해 더<br>
+              많은 개인이 성장해 더 넓은 세상에서 기회를 만들 수 있도록 돕는 것. 이것이 네이버가<br>
+             기술 플랫폼이 되고자 하는 이유이고, 프로젝트 꽃의 바람입니다.
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br><br><br><br>
+     <table id="image_table">
+      <caption><a id="move3"></a>네이버 제품 소개</caption>
+      <tr>
+        <td><a href = "https://m.post.naver.com/viewer/postView.naver?volumeNo=32134415&memberNo=30633733" target="_blank"><img id="table_img" src="naver_pay.jpeg" alt="pay"/></a></td> 
+        <td><a href = "https://whale.naver.com/ko/" target="_blank"><img id="table_img" src="naver_whale.png" alt="whale"/></a></td>
+      </tr>
+      <tr>
+        <td><a href = "https://clovanote.naver.com/" target="_blank"><img id="table_img" src="naver_clova.png" alt="clova"/></a></td>
+        <td><a href = "https://comic.naver.com/webtoon/weekday" target="_blank"><img id="table_img" src="naver_webtoon.png" alt="webtoon"/></a></td>
+      </tr>
+     </table><br><br>
+     <a id="window_link" href="javascript:load('https://linepluscorp.com/')"> <!--chapter 10-->
+        자회사 바로가기</a><br><br><br><br><br>
+      <h3>웹페이지 접속한 시간</h3> <!--chapter 7-->
+      <script>
+        let current = new Date();
+        document.write("Time : ");
+        document.write(current.getHours()," : ");
+        document.write(current.getMinutes()," : ");
+        document.write(current.getSeconds());
+      </script>
+      
+</section>
+<script>
+    const prev = document.querySelector('.prev'); /*chapter 8?*/
+    const next = document.querySelector('.next');
+    const images = document.querySelector('.slide').children; 
+    const totalImages = images.length;
+    let index = 0;
+
+prev.addEventListener('click', () => { /*chapter 9*/
+  nextImage('prev');
+})
+
+next.addEventListener('click', () => {
+  nextImage('next');
+})
+/*chapter 6 자바스크립트 함수 정의 및 설명 + 조건문/반복문*/
+function nextImage(direction) { 
+  if(direction == 'next') {
+    index++;
+    if(index == totalImages) {
+      index = 0;
+    }
+  } else {
+    if(index == 0) {
+      index = totalImages - 1;
+    } else {
+      index--;
+    }
+  }
+
+  for(let i = 0; i < images.length; i++) {
+    images[i].classList.remove('main');
+  }
+  images[index].classList.add('main');
+}
+</script>
+</body>
+</html>
